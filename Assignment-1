@@ -1,0 +1,49 @@
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+class Employee {
+	public: //specifier//
+
+	void input();
+	int calc_total_sales();
+
+private:
+	int sales[100][5];
+	int n;
+	int sum[100];
+    int counter = 0;
+};
+
+void Employee::input(){
+	cout << "Enter number of employees : " << endl;
+	cin >> n;
+	for (int i = 1; i <= n; ++i) {
+		cout << "Enter the five sales of employee" << "#" << i << ": " << endl;
+		cin >> sales[i][0] >> sales[i][1] >> sales[i][2] >> sales[i][3] >> sales[i][4];
+	}
+}
+int Employee::calc_total_sales(){
+    for(int s = 1; s <= n; s++) { //find total sum of each employee
+        sum[s] = sales[s][0] + sales[s][1] + sales[s][2] + sales[s][3] + sales[s][4];
+        if(sum[1] < sum[s]) {
+            ++counter;
+        }
+    }
+    return counter;
+}
+
+int main()
+{
+
+Employee obj;
+cout << "Employee 1 is Jack" << endl;
+
+obj.input();
+
+cout << "Number of employees whose sales are greater than Jack : " << obj.calc_total_sales() << endl;
+return EXIT_SUCCESS;
+}
+
+
+
